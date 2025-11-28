@@ -40,10 +40,16 @@ func main() {
 
 func solveJumble(jumble string, dict map[string]bool) ([]string) {
     var validPerms []string
+    var resultSet = make(map[string]bool)
+
     for _, p := range permutations(jumble) {
         if dict[p] {
-            validPerms = append(validPerms, p)
+            resultSet[p] = true
         }
+    }
+
+    for word := range resultSet {
+        validPerms = append(validPerms, word)
     }
     return validPerms
 }
